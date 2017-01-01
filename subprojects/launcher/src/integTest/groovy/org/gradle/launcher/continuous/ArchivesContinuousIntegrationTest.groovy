@@ -16,9 +16,12 @@
 
 package org.gradle.launcher.continuous
 
+import org.gradle.integtests.fixtures.archives.TestReproducibleArchives
 import spock.lang.Ignore
 import spock.lang.Unroll
 
+@Unroll
+@TestReproducibleArchives
 class ArchivesContinuousIntegrationTest extends Java7RequiringContinuousIntegrationTest {
     def "creating zips"() {
         given:
@@ -66,7 +69,6 @@ class ArchivesContinuousIntegrationTest extends Java7RequiringContinuousIntegrat
         executedAndNotSkipped(":zip")
     }
 
-    @Unroll
     def "using compressed files as inputs - #source - readonly #readonly"() {
         given:
         def packDir = file("pack").createDir()
